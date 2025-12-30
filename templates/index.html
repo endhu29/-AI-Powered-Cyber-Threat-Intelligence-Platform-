@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="refresh" content="5">
+
+    <title>Cyber Threat Intelligence Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body { font-family: Arial; background: #f4f6f8; }
+        h1 { text-align: center; }
+        .charts { display: flex; justify-content: space-around; margin: 30px; }
+        table { width: 90%; margin: auto; border-collapse: collapse; }
+        th, td { border: 1px solid #ccc; padding: 10px; text-align: center; }
+        th { background: #222; color: white; }
+        .HIGH { background: #ffcccc; }
+        .MEDIUM { background: #fff3cd; }
+        .LOW { background: #d4edda; }
+    </style>
+</head>
+
+<body>
+
+<h1>🚨 AI-Powered Cyber Threat Intelligence Dashboard</h1>
+
+<div class="charts">
+    <canvas id="attackChart" width="300" height="300"></canvas>
+    <canvas id="severityChart" width="300" height="300"></canvas>
+</div>
+
+<script>
+    // @ts-nocheck
+    const attackCount = {{ attack_count | int }};
+    const normalCount = {{ normal_count | int }};
+    const severityCounts = {
+        LOW: {{ severity_counts.LOW | int }},
+        MEDIUM: {{ severity_counts.MEDIUM | int }},
+        HIGH: {{ severity_counts.HIGH | int }}
+    };
+
+    new Chart(document.getElementById("attackChart"), {
+        type: "pie",
+        data: {
+            labels: ["Attack", "Normal"],
+            datasets: [{
+                data: [attackCount, normalCount],
+                backgroundColor: ["#ff4d4d", "#4CAF50"]
+            }]
+        }
+    });
+
+    new Chart(document.getElementById("severityChart"), {
+        type: "bar",
+        data: {
+            labels: ["LOW", "MEDIUM", "HIGH"],
+            datasets: [{
+                label: "Severity Count",
+                data: [
+                    severityCounts.LOW,
+                    severityCounts.MEDIUM,
+                    severityCounts.HIGH
+                ],
+                backgroundColor: ["#4CAF50", "#FFC107", "#F44336"]
+            }]
+        }
+    });
+</script>
+
+<br><br>
+<table>
+    <tr>
+        <th>Time</th>
+        <th>Prediction</th>
+        <th>Severity</th>
+        <th>Risk Score</th>
+    </tr>
+
+    {% for row in tables %}
+    <tr class="{{ row.severity }}">
+        <td>{{ row.timestamp }}</td>
+        <td>{{ row.prediction }}</td>
+        <td>{{ row.severity }}</td>
+        <td>{{ row.risk_score }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>
