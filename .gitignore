@@ -1,0 +1,21 @@
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtual environment
+env/
+venv/
+
+# ML models
+model/*.pkl
+
+# Logs / generated data
+alerts.csv
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
