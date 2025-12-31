@@ -34,21 +34,21 @@ This project uses a **hybrid approach (Machine Learning + Rule-Based Detection)*
 ---
 
 ## 🧠 System Architecture
+```
 
+ Network Data
+      ↓
+ Machine Learning Model
+      ↓
+ Rule-Based Override
+      ↓
+ Severity & Risk Score
+      ↓
+ Alert Logging (CSV)
+      ↓
+ Flask Dashboard
 
-# Network Data
-#      ↓
-# Machine Learning Model
-#      ↓
-# Rule-Based Override
-#      ↓
-# Severity & Risk Score
-#      ↓
-# Alert Logging (CSV)
-#      ↓
-# Flask Dashboard
-
-
+```
 ---
 
 ## 🚀 How It Works
@@ -74,20 +74,35 @@ This project uses a **hybrid approach (Machine Learning + Rule-Based Detection)*
 ## ▶️ How to Run the Project
 
 ### 1️⃣ Activate virtual environment
+```env
 source env/bin/activate
-
+```
 ### 2️⃣ Run threat detection
+``` bash
 python detect_threat.py
-
+```
 ### 3️⃣ Start dashboard
+```bash
 python app.py
-
+```
 ### 4️⃣ Open browser
+```bash
 http://127.0.0.1:5000
-
+```
 ### 🧪 Sample Output
+
 🚨 ALERT: Cyber Attack Detected | Severity: HIGH | Risk Score: 100
 Threat Intelligence System Running...
+
+### Output samples
+## 📸 Project Screenshots
+
+### Dashboard View
+![Dashboard Screenshot](output/2.png)
+
+### Threat Distribution Chart
+![Pie Chart](output/3.png)
+
 
 ### 🎓 Why Hybrid Detection?
 
